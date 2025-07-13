@@ -1,4 +1,4 @@
-import { AgentType, UserStatus } from '../class/User';
+import { AgentType, TransactionStatus } from '../class/Transaction';
 
 export const DATASET = [
   {
@@ -8,7 +8,7 @@ export const DATASET = [
     amount: 100,
     country: 'US',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '2',
@@ -17,7 +17,7 @@ export const DATASET = [
     amount: 250,
     country: 'ES',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '3',
@@ -26,7 +26,7 @@ export const DATASET = [
     amount: 5000,
     country: 'CA',
     agentType: AgentType.COMPANY,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '4',
@@ -35,7 +35,7 @@ export const DATASET = [
     amount: 180,
     country: 'FR',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.PENDING,
+    status: TransactionStatus.PENDING,
   },
   {
     id: '5',
@@ -44,7 +44,7 @@ export const DATASET = [
     amount: 15000,
     country: 'GB',
     agentType: AgentType.COMPANY,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '6',
@@ -53,7 +53,7 @@ export const DATASET = [
     amount: 320,
     country: 'DE',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.INACTIVE,
+    status: TransactionStatus.INACTIVE,
   },
   {
     id: '7',
@@ -62,7 +62,7 @@ export const DATASET = [
     amount: 25000,
     country: 'AU',
     agentType: AgentType.GOVERNMENT,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '8',
@@ -71,7 +71,7 @@ export const DATASET = [
     amount: 8000,
     country: 'CH',
     agentType: AgentType.ORGANIZATION,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '9',
@@ -80,7 +80,7 @@ export const DATASET = [
     amount: 450,
     country: 'BR',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.SUSPENDED,
+    status: TransactionStatus.SUSPENDED,
   },
   {
     id: '10',
@@ -89,7 +89,7 @@ export const DATASET = [
     amount: 600,
     country: 'CN',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '11',
@@ -98,7 +98,7 @@ export const DATASET = [
     amount: 12000,
     country: 'JP',
     agentType: AgentType.COMPANY,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '12',
@@ -107,7 +107,7 @@ export const DATASET = [
     amount: 275,
     country: 'US',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.PENDING,
+    status: TransactionStatus.PENDING,
   },
   {
     id: '13',
@@ -116,7 +116,7 @@ export const DATASET = [
     amount: 380,
     country: 'EG',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '14',
@@ -125,7 +125,7 @@ export const DATASET = [
     amount: 18000,
     country: 'NO',
     agentType: AgentType.COMPANY,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '15',
@@ -134,7 +134,7 @@ export const DATASET = [
     amount: 22000,
     country: 'NZ',
     agentType: AgentType.GOVERNMENT,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '16',
@@ -143,7 +143,7 @@ export const DATASET = [
     amount: 195,
     country: 'RU',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.INACTIVE,
+    status: TransactionStatus.INACTIVE,
   },
   {
     id: '17',
@@ -152,7 +152,7 @@ export const DATASET = [
     amount: 9500,
     country: 'US',
     agentType: AgentType.ORGANIZATION,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '18',
@@ -161,7 +161,7 @@ export const DATASET = [
     amount: 420,
     country: 'MX',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '19',
@@ -170,7 +170,7 @@ export const DATASET = [
     amount: 35000,
     country: 'US',
     agentType: AgentType.COMPANY,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '20',
@@ -179,7 +179,7 @@ export const DATASET = [
     amount: 520,
     country: 'JP',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '21',
@@ -188,7 +188,7 @@ export const DATASET = [
     amount: 7800,
     country: 'CA',
     agentType: AgentType.ORGANIZATION,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '22',
@@ -197,7 +197,7 @@ export const DATASET = [
     amount: 290,
     country: 'SE',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.SUSPENDED,
+    status: TransactionStatus.SUSPENDED,
   },
   {
     id: '23',
@@ -206,7 +206,7 @@ export const DATASET = [
     amount: 14500,
     country: 'IE',
     agentType: AgentType.COMPANY,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '24',
@@ -215,7 +215,7 @@ export const DATASET = [
     amount: 45000,
     country: 'SG',
     agentType: AgentType.GOVERNMENT,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '25',
@@ -224,7 +224,7 @@ export const DATASET = [
     amount: 350,
     country: 'IN',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '26',
@@ -233,7 +233,7 @@ export const DATASET = [
     amount: 8900,
     country: 'NL',
     agentType: AgentType.COMPANY,
-    status: UserStatus.PENDING,
+    status: TransactionStatus.PENDING,
   },
   {
     id: '27',
@@ -242,7 +242,7 @@ export const DATASET = [
     amount: 475,
     country: 'IT',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '28',
@@ -251,7 +251,7 @@ export const DATASET = [
     amount: 12000,
     country: 'US',
     agentType: AgentType.ORGANIZATION,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '29',
@@ -260,7 +260,7 @@ export const DATASET = [
     amount: 225,
     country: 'SA',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.INACTIVE,
+    status: TransactionStatus.INACTIVE,
   },
   {
     id: '30',
@@ -269,7 +269,7 @@ export const DATASET = [
     amount: 28000,
     country: 'HK',
     agentType: AgentType.COMPANY,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '31',
@@ -278,7 +278,7 @@ export const DATASET = [
     amount: 32000,
     country: 'ZA',
     agentType: AgentType.GOVERNMENT,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '32',
@@ -287,7 +287,7 @@ export const DATASET = [
     amount: 310,
     country: 'DK',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '33',
@@ -296,7 +296,7 @@ export const DATASET = [
     amount: 19500,
     country: 'CH',
     agentType: AgentType.COMPANY,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '34',
@@ -305,7 +305,7 @@ export const DATASET = [
     amount: 11500,
     country: 'GB',
     agentType: AgentType.ORGANIZATION,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '35',
@@ -314,7 +314,7 @@ export const DATASET = [
     amount: 580,
     country: 'JP',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.PENDING,
+    status: TransactionStatus.PENDING,
   },
   {
     id: '36',
@@ -323,7 +323,7 @@ export const DATASET = [
     amount: 24000,
     country: 'FI',
     agentType: AgentType.COMPANY,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '37',
@@ -332,7 +332,7 @@ export const DATASET = [
     amount: 265,
     country: 'PT',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '38',
@@ -341,7 +341,7 @@ export const DATASET = [
     amount: 38000,
     country: 'KR',
     agentType: AgentType.GOVERNMENT,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '39',
@@ -350,7 +350,7 @@ export const DATASET = [
     amount: 445,
     country: 'BG',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.SUSPENDED,
+    status: TransactionStatus.SUSPENDED,
   },
   {
     id: '40',
@@ -359,7 +359,7 @@ export const DATASET = [
     amount: 15000,
     country: 'FR',
     agentType: AgentType.ORGANIZATION,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '41',
@@ -368,7 +368,7 @@ export const DATASET = [
     amount: 395,
     country: 'TW',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '42',
@@ -377,7 +377,7 @@ export const DATASET = [
     amount: 42000,
     country: 'IS',
     agentType: AgentType.COMPANY,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '43',
@@ -386,7 +386,7 @@ export const DATASET = [
     amount: 210,
     country: 'AU',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.INACTIVE,
+    status: TransactionStatus.INACTIVE,
   },
   {
     id: '44',
@@ -395,7 +395,7 @@ export const DATASET = [
     amount: 29000,
     country: 'TH',
     agentType: AgentType.GOVERNMENT,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '45',
@@ -404,7 +404,7 @@ export const DATASET = [
     amount: 340,
     country: 'GB',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '46',
@@ -413,7 +413,7 @@ export const DATASET = [
     amount: 55000,
     country: 'US',
     agentType: AgentType.COMPANY,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '47',
@@ -422,7 +422,7 @@ export const DATASET = [
     amount: 13500,
     country: 'US',
     agentType: AgentType.ORGANIZATION,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '48',
@@ -431,7 +431,7 @@ export const DATASET = [
     amount: 485,
     country: 'AT',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.PENDING,
+    status: TransactionStatus.PENDING,
   },
   {
     id: '49',
@@ -440,7 +440,7 @@ export const DATASET = [
     amount: 325,
     country: 'CL',
     agentType: AgentType.INDIVIDUAL,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '50',
@@ -449,7 +449,7 @@ export const DATASET = [
     amount: 21000,
     country: 'GL',
     agentType: AgentType.ORGANIZATION,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
   {
     id: '51',
@@ -458,6 +458,6 @@ export const DATASET = [
     amount: 33000,
     country: 'EE',
     agentType: AgentType.COMPANY,
-    status: UserStatus.ACTIVE,
+    status: TransactionStatus.ACTIVE,
   },
 ];

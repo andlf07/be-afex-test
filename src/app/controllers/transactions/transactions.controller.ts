@@ -1,15 +1,15 @@
-import { SearchFilters } from '@context/users/domain/interfaces/user-repository.interface';
-import { UsersService } from '@context/users/infrastructure/services/users.service';
+import { SearchFilters } from '@context/transactions/domain/interfaces/transaction-repository.interface';
+import { TransactionsService } from '@context/transactions/infrastructure/services/transactions.service';
 import { Controller, Get, Param, Query } from '@nestjs/common';
-import { AgentType, UserStatus } from '@context/users/domain/class/User';
+import { AgentType, TransactionStatus } from '@context/transactions/domain/class/Transaction';
 
-@Controller('users')
-export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+@Controller('transactions')
+export class TransactionsController {
+  constructor(private readonly transactionsService: TransactionsService) {}
 
   @Get()
-  async getUsers(
-    @Query('status') status?: UserStatus,
+  async getTransactions(
+    @Query('status') status?: TransactionStatus,
     @Query('agentType') agentType?: AgentType,
     @Query('country') country?: string,
     @Query('amount') amount?: string,
@@ -31,11 +31,11 @@ export class UsersController {
     if (page) filters.page = parseInt(page, 10);
     if (limit) filters.limit = parseInt(limit, 10);
 
-    return await this.usersService.findAll(Object.keys(filters).length > 0 ? filters : undefined);
+    return await this.transactionsService.findAll(Object.keys(filters).length > 0 ? filters : undefined);
   }
 
   @Get(':id')
-  async getUserById(@Param('id') id: string) {
-    return await this.usersService.findById(id);
+  async getTransactionById(@Param('id') id: string) {
+    return await this.transactionsService.findById(id);
   }
 }

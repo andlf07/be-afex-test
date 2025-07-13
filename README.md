@@ -2,7 +2,7 @@
 
 ## Descripción
 
-Este es un proyecto backend desarrollado con NestJS que implementa 2 endpoints de usuarios con funcionalidades de búsqueda y paginación.
+Este es un proyecto backend desarrollado con NestJS que implementa 2 endpoints de transacciones con funcionalidades de búsqueda y paginación.
 
 ## Tecnologías Utilizadas
 
@@ -16,12 +16,12 @@ Este es un proyecto backend desarrollado con NestJS que implementa 2 endpoints d
 src/
 ├── app/
 │   ├── controllers/
-│   │   └── users/
-│   │       └── users.controller.ts
+│   │   └── transactions/
+│   │       └── transactions.controller.ts
 │   └── routes/
 │       └── routes.module.ts
 └── context/
-    └── users/
+    └── transactions/
         ├── application/
         │   └── use_cases/
         ├── domain/
@@ -33,23 +33,23 @@ src/
             └── services/
 ```
 
-## API de Usuarios
+## API de Transacciones
 
 ### Endpoints Disponibles
 
-#### 1. Obtener Todos los Usuarios
+#### 1. Obtener Todos los Transacciones
 
 ```
-GET /users
+GET /transactions
 ```
 
 **Parámetros de consulta opcionales:**
 
-- `status` - Estado del usuario (ACTIVE, INACTIVE, PENDING, SUSPENDED)
+- `status` - Estado del transacción (ACTIVE, INACTIVE, PENDING, SUSPENDED)
 - `agentType` - Tipo de agente (INDIVIDUAL, COMPANY, GOVERNMENT, ORGANIZATION)
-- `country` - País del usuario
+- `country` - País del transacción
 - `amount` - Monto específico
-- `name` - Nombre del usuario (búsqueda parcial)
+- `name` - Nombre del transacción (búsqueda parcial)
 - `dateFrom` - Fecha inicial (formato: YYYY-MM-DD)
 - `dateTo` - Fecha final (formato: YYYY-MM-DD)
 - `page` - Número de página (por defecto: 1)
@@ -58,11 +58,11 @@ GET /users
 **Ejemplos de uso:**
 
 ```
-GET /users
-GET /users?status=ACTIVE
-GET /users?page=2&limit=5
-GET /users?name=juan&country=colombia&page=1&limit=20
-GET /users?dateFrom=2023-01-01&dateTo=2023-12-31
+GET /transactions
+GET /transactions?status=ACTIVE
+GET /transactions?page=2&limit=5
+GET /transactions?name=juan&country=colombia&page=1&limit=20
+GET /transactions?dateFrom=2023-01-01&dateTo=2023-12-31
 ```
 
 **Respuesta:**
@@ -91,10 +91,10 @@ GET /users?dateFrom=2023-01-01&dateTo=2023-12-31
 }
 ```
 
-#### 2. Obtener Usuario por ID
+#### 2. Obtener Transacción por ID
 
 ```
-GET /users/:id
+GET /transactions/:id
 ```
 
 **Respuesta:**
@@ -129,7 +129,7 @@ npm run start:dev
 
 ## Funcionalidades Implementadas
 
-- ✅ Búsqueda de usuarios por múltiples criterios
+- ✅ Búsqueda de transaccións por múltiples criterios
 - ✅ Paginación de resultados
 - ✅ Filtrado por estado, tipo de agente, país, monto, nombre y fechas
 - ✅ Arquitectura hexagonal con separación de responsabilidades

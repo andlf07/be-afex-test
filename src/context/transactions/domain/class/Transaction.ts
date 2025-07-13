@@ -1,6 +1,6 @@
-import { IUser } from '../interfaces/user.interface';
+import { ITransaction } from '../interfaces/transaction.interface';
 
-export enum UserStatus {
+export enum TransactionStatus {
   ACTIVE = 'ACTIVE',
   INACTIVE = 'INACTIVE',
   PENDING = 'PENDING',
@@ -14,16 +14,16 @@ export enum AgentType {
   ORGANIZATION = 'ORGANIZATION',
 }
 
-export class User {
+export class Transaction {
   private id: string;
   private data: Date;
   private name: string;
   private amount: number;
   private country: string;
   private agentType: AgentType;
-  private status: UserStatus;
+  private status: TransactionStatus;
 
-  constructor(data: IUser) {
+  constructor(data: ITransaction) {
     this.id = data.id;
     this.data = new Date(data.data);
     this.name = data.name;
@@ -33,37 +33,37 @@ export class User {
     this.status = data.status;
   }
 
-  withId(id: string): User {
+  withId(id: string): Transaction {
     this.id = id;
     return this;
   }
 
-  withData(data: Date): User {
+  withData(data: Date): Transaction {
     this.data = data;
     return this;
   }
 
-  withName(name: string): User {
+  withName(name: string): Transaction {
     this.name = name;
     return this;
   }
 
-  withAmount(amount: number): User {
+  withAmount(amount: number): Transaction {
     this.amount = amount;
     return this;
   }
 
-  withCountry(country: string): User {
+  withCountry(country: string): Transaction {
     this.country = country;
     return this;
   }
 
-  withAgentType(agentType: AgentType): User {
+  withAgentType(agentType: AgentType): Transaction {
     this.agentType = agentType;
     return this;
   }
 
-  withStatus(status: UserStatus): User {
+  withStatus(status: TransactionStatus): Transaction {
     this.status = status;
     return this;
   }

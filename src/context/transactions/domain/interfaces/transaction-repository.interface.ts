@@ -1,8 +1,8 @@
-import { AgentType, UserStatus } from '../class/User';
-import { IUser } from './user.interface';
+import { AgentType, TransactionStatus } from '../class/Transaction';
+import { ITransaction } from './transaction.interface';
 
 export interface SearchFilters {
-  status?: UserStatus;
+  status?: TransactionStatus;
   agentType?: AgentType;
   country?: string;
   amount?: number;
@@ -27,7 +27,7 @@ export interface PaginatedResult<T> {
   meta: PaginationMeta;
 }
 
-export interface IUserRepository {
-  findAll(filters?: SearchFilters): Promise<PaginatedResult<IUser>>;
-  findById(id: string): Promise<IUser | null>;
+export interface ITransactionRepository {
+  findAll(filters?: SearchFilters): Promise<PaginatedResult<ITransaction>>;
+  findById(id: string): Promise<ITransaction | null>;
 }

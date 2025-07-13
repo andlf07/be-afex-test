@@ -1,14 +1,21 @@
+import {
+  AgentType,
+  TransactionStatus,
+} from '@context/transactions/domain/class/Transaction';
+import { ITransaction } from '@context/transactions/domain/interfaces/transaction.interface';
 import { Test, TestingModule } from '@nestjs/testing';
-import FindAllUsers from './find-all-users.use-case';
-import { IUserRepository, SearchFilters, PaginatedResult } from '../../domain/interfaces/user-repository.interface';
-import { IUser } from '../../domain/interfaces/user.interface';
-import { AgentType, UserStatus } from '../../domain/class/User';
+import {
+  ITransactionRepository,
+  PaginatedResult,
+  SearchFilters,
+} from '../../domain/interfaces/transaction-repository.interface';
+import FindAllTransactions from './find-all-transactions.use-case';
 
-describe('FindAllUsers', () => {
-  let useCase: FindAllUsers;
-  let mockRepository: jest.Mocked<IUserRepository>;
+describe('FindAllTransactions', () => {
+  let useCase: FindAllTransactions;
+  let mockRepository: jest.Mocked<ITransactionRepository>;
 
-  const mockUsers: IUser[] = [
+  const mockTransactions: ITransaction[] = [
     {
       id: '1',
       data: new Date('2021-01-01'),
@@ -16,7 +23,7 @@ describe('FindAllUsers', () => {
       amount: 100,
       country: 'US',
       agentType: AgentType.INDIVIDUAL,
-      status: UserStatus.ACTIVE,
+      status: TransactionStatus.ACTIVE,
     },
     {
       id: '2',
@@ -25,12 +32,12 @@ describe('FindAllUsers', () => {
       amount: 250,
       country: 'ES',
       agentType: AgentType.INDIVIDUAL,
-      status: UserStatus.ACTIVE,
+      status: TransactionStatus.PENDING,
     },
   ];
 
-  const mockPaginatedResult: PaginatedResult<IUser> = {
-    data: mockUsers,
+  const mockPaginatedResult: PaginatedResult<ITransaction> = {
+    data: mockTransactions,
     meta: {
       currentPage: 1,
       itemsPerPage: 10,
@@ -43,7 +50,7 @@ describe('FindAllUsers', () => {
 
   beforeEach(async () => {
     const mockRepositoryProvider = {
-      provide: 'UserRepository',
+      provide: 'TransactionRepository',
       useValue: {
         findAll: jest.fn(),
         findById: jest.fn(),
@@ -51,11 +58,11 @@ describe('FindAllUsers', () => {
     };
 
     const module: TestingModule = await Test.createTestingModule({
-      providers: [FindAllUsers, mockRepositoryProvider],
+      providers: [FindAllTransactions, mockRepositoryProvider],
     }).compile();
 
-    useCase = module.get<FindAllUsers>(FindAllUsers);
-    mockRepository = module.get('UserRepository');
+    useCase = module.get<FindAllTransactions>(FindAllTransactions);
+    mockRepository = module.get('TransactionRepository');
   });
 
   afterEach(() => {
@@ -63,7 +70,7 @@ describe('FindAllUsers', () => {
   });
 
   describe('run', () => {
-    it('should call repository.findAll with no filters when none provided', async () => {
+    it('debería llamar a repository.findAll sin filtros cuando no se proporcionan', async () => {
       mockRepository.findAll.mockResolvedValue(mockPaginatedResult);
 
       const result = await useCase.run();
@@ -72,9 +79,9 @@ describe('FindAllUsers', () => {
       expect(result).toEqual(mockPaginatedResult);
     });
 
-    it('should call repository.findAll with provided filters', async () => {
+    it('debería llamar a repository.findAll con los filtros proporcionados', async () => {
       const filters: SearchFilters = {
-        status: UserStatus.ACTIVE,
+        status: TransactionStatus.ACTIVE,
         page: 1,
         limit: 5,
       };
@@ -86,17 +93,17 @@ describe('FindAllUsers', () => {
       expect(result).toEqual(mockPaginatedResult);
     });
 
-    it('should return paginated result from repository', async () => {
+    it('debería retornar resultado paginado del repositorio', async () => {
       mockRepository.findAll.mockResolvedValue(mockPaginatedResult);
 
       const result = await useCase.run();
 
-      expect(result.data).toEqual(mockUsers);
+      expect(result.data).toEqual(mockTransactions);
       expect(result.meta).toEqual(mockPaginatedResult.meta);
     });
 
-    it('should handle empty results', async () => {
-      const emptyResult: PaginatedResult<IUser> = {
+    it('debería manejar resultados vacíos', async () => {
+      const emptyResult: PaginatedResult<ITransaction> = {
         data: [],
         meta: {
           currentPage: 1,
@@ -115,16 +122,16 @@ describe('FindAllUsers', () => {
       expect(result.meta.totalItems).toBe(0);
     });
 
-    it('should propagate repository errors', async () => {
+    it('debería propagar errores del repositorio', async () => {
       const error = new Error('Repository error');
       mockRepository.findAll.mockRejectedValue(error);
 
       await expect(useCase.run()).rejects.toThrow('Repository error');
     });
 
-    it('should handle complex filters', async () => {
+    it('debería manejar filtros complejos', async () => {
       const complexFilters: SearchFilters = {
-        status: UserStatus.ACTIVE,
+        status: TransactionStatus.ACTIVE,
         agentType: AgentType.COMPANY,
         country: 'US',
         amount: 1000,
