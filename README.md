@@ -1,98 +1,146 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Proyecto AFEX Test - Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Descripción
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Este es un proyecto backend desarrollado con NestJS que implementa 2 endpoints de usuarios con funcionalidades de búsqueda y paginación.
 
-## Description
+## Tecnologías Utilizadas
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- **NestJS**
+- **TypeScript**
+- **Arquitectura Hexagonal**
 
-## Project setup
+## Estructura del Proyecto
 
-```bash
-$ npm install
+```
+src/
+├── app/
+│   ├── controllers/
+│   │   └── users/
+│   │       └── users.controller.ts
+│   └── routes/
+│       └── routes.module.ts
+└── context/
+    └── users/
+        ├── application/
+        │   └── use_cases/
+        ├── domain/
+        │   ├── class/
+        │   └── interfaces/
+        └── infrastructure/
+            ├── modules/
+            ├── repositories/
+            └── services/
 ```
 
-## Compile and run the project
+## API de Usuarios
 
-```bash
-# development
-$ npm run start
+### Endpoints Disponibles
 
-# watch mode
-$ npm run start:dev
+#### 1. Obtener Todos los Usuarios
 
-# production mode
-$ npm run start:prod
+```
+GET /users
 ```
 
-## Run tests
+**Parámetros de consulta opcionales:**
 
-```bash
-# unit tests
-$ npm run test
+- `status` - Estado del usuario (ACTIVE, INACTIVE, PENDING, SUSPENDED)
+- `agentType` - Tipo de agente (INDIVIDUAL, COMPANY, GOVERNMENT, ORGANIZATION)
+- `country` - País del usuario
+- `amount` - Monto específico
+- `name` - Nombre del usuario (búsqueda parcial)
+- `dateFrom` - Fecha inicial (formato: YYYY-MM-DD)
+- `dateTo` - Fecha final (formato: YYYY-MM-DD)
+- `page` - Número de página (por defecto: 1)
+- `limit` - Elementos por página (por defecto: 10)
 
-# e2e tests
-$ npm run test:e2e
+**Ejemplos de uso:**
 
-# test coverage
-$ npm run test:cov
+```
+GET /users
+GET /users?status=ACTIVE
+GET /users?page=2&limit=5
+GET /users?name=juan&country=colombia&page=1&limit=20
+GET /users?dateFrom=2023-01-01&dateTo=2023-12-31
 ```
 
-## Deployment
+**Respuesta:**
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+```json
+{
+  "data": [
+    {
+      "id": "1",
+      "name": "Juan Pérez",
+      "country": "Colombia",
+      "amount": 1500,
+      "status": "ACTIVE",
+      "agentType": "INDIVIDUAL",
+      "data": "2023-01-15T00:00:00.000Z"
+    }
+  ],
+  "meta": {
+    "currentPage": 1,
+    "itemsPerPage": 10,
+    "totalItems": 50,
+    "totalPages": 5,
+    "hasNextPage": true,
+    "hasPreviousPage": false
+  }
+}
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+#### 2. Obtener Usuario por ID
 
-## Resources
+```
+GET /users/:id
+```
 
-Check out a few resources that may come in handy when working with NestJS:
+**Respuesta:**
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```json
+{
+  "id": "1",
+  "name": "Juan Pérez",
+  "country": "Colombia",
+  "amount": 1500,
+  "status": "ACTIVE",
+  "agentType": "INDIVIDUAL",
+  "data": "2023-01-15T00:00:00.000Z"
+}
+```
 
-## Support
+## Instalación y Ejecución
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+1. Instalar dependencias:
 
-## Stay in touch
+```bash
+npm install
+```
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+2. Ejecutar en modo desarrollo:
 
-## License
+```bash
+npm run start:dev
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+3. El servidor estará disponible en: `http://localhost:3000`
+
+## Funcionalidades Implementadas
+
+- ✅ Búsqueda de usuarios por múltiples criterios
+- ✅ Paginación de resultados
+- ✅ Filtrado por estado, tipo de agente, país, monto, nombre y fechas
+- ✅ Arquitectura hexagonal con separación de responsabilidades
+- ✅ Casos de uso específicos (FindAll y FindById)
+- ✅ Repositorio en memoria con datos de prueba
+
+## Arquitectura
+
+El proyecto implementa una arquitectura hexagonal con las siguientes capas:
+
+- **Dominio**: Entidades, interfaces y reglas de negocio
+- **Aplicación**: Casos de uso y lógica de aplicación
+- **Infraestructura**: Implementaciones concretas, repositorios y servicios
+- **Controladores**: Punto de entrada HTTP para la API
